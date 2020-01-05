@@ -72,14 +72,15 @@ const contactWrapper = css`
   flex-direction: row;
   justify-content: center;
   flex-grow: 1;
-  align-items: flex-start;
 `;
 
 const flexContainer = css`
   box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.8);
   ${media.mid`
     box-shadow: none;
-  `};  
+  `};
+  flex-direction: column;
+  justify-content: flex-start;
 `;
 
 const Contact = ({ data }) => {
@@ -106,7 +107,6 @@ const Contact = ({ data }) => {
           className={flexContainer}
           width="100vw"
           wrap={['wrap', 'wrap', 'wrap']}
-          justifyContent=""
         >
           <Heading1 width={[1, 1, 1]} textAlign="center">
             Contact

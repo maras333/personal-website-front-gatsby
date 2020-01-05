@@ -39,7 +39,6 @@ const aboutWrapper = css`
   flex-direction: row;
   justify-content: center;
   flex-grow: 1;
-  align-items: flex-start;
 `;
 
 const flexContainer = css`
@@ -47,6 +46,7 @@ const flexContainer = css`
   ${media.mid`
     box-shadow: none;
   `};
+  align-items: flex-start;
 `;
 
 const About = ({ data }) => {

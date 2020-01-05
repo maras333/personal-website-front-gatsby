@@ -18,9 +18,13 @@ const svgStyles = css`
 `;
 
 const contentContainerStyle = css`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  items-align: flex-start;
   & img {
-    max-width: 100%;
-    margin: 1rem 0;
+    max-width: 50%;
+    margin: 1rem auto;
   }
 `;
 
@@ -28,10 +32,6 @@ const articleStyle = css`
   & hr {
     background: rgb(214, 218, 222);
   }
-`;
-
-const Article = styled.article`
-  ${space};
 `;
 
 const articleWrapper = css`
@@ -45,8 +45,12 @@ const articleWrapper = css`
 const boxWrapper = css`
   box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.8);
   ${media.mid`
-    box-shadow: none;
-  `};
+  box-shadow: none;
+`};
+`;
+
+const Article = styled.article`
+  ${space};
 `;
 
 const Template = ({ data }) => {
@@ -57,7 +61,6 @@ const Template = ({ data }) => {
         <Box
           className={boxWrapper}
           width={[1, 1, 3 / 5]}
-          m={['3.5rem 0 0 0', '3.5rem 0 0 0', '3.5rem auto 0 auto']}
           px={[3, 3, 4]}
           py={[3, 3, 4]}
           color={colors.secondary}

@@ -7,6 +7,7 @@ import { Box, Flex } from '../components/Layout';
 import PageWrapper from '../components/PageWrapper';
 import { ButtonSecondary } from '../components/Buttons';
 import colors from '../utils/colors';
+import media from '../utils/media';
 
 const Heading1 = styled.h1`
   ${space} ${textAlign} ${width};
@@ -21,6 +22,14 @@ const page404Wrapper = css`
   flex-direction: row;
   justify-content: center;
   flex-grow: 1;
+`;
+
+const flexContainer = css`
+  box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.8);
+  ${media.mid`
+    box-shadow: none;
+  `};
+  flex-direction: column;
   align-items: flex-start;
 `;
 
@@ -37,7 +46,11 @@ const Page404 = () => (
       align="left"
       color="white"
     >
-      <Flex width="100vw" wrap={['wrap', 'wrap', 'wrap']}>
+      <Flex
+        className={flexContainer}
+        width="100vw"
+        wrap={['wrap', 'wrap', 'wrap']}
+      >
         <Heading1 width={[1, 1, 1]} textAlign="center">
           404
         </Heading1>

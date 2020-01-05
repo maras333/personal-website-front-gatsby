@@ -65,7 +65,7 @@ const About = ({ data }) => {
         align="left"
         color="white"
       >
-        <Flex className={flexContainer} width="100ww" wrap={['wrap', 'wrap', 'wrap']} justifyContent="">
+        <Flex className={flexContainer} width="100vw" wrap={['wrap', 'wrap', 'wrap']} justifyContent="">
           <Heading1 width={[1, 1, 1]} textAlign="center">
             About Me
           </Heading1>

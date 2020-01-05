@@ -10,6 +10,7 @@ import colors from '../utils/colors';
 
 const imgStyle = css`
   border-radius: 33%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8), 10px 10px 10px rgba(0, 0, 0, 0.8);
 `;
 
 const Heading1 = styled.h1`
@@ -64,6 +65,7 @@ const About = ({ data }) => {
             width={[1, 1, 1 / 4]}
             m={[0, '2rem 0 0 0', '2rem 0 0 0']}
             px={[5, 5, 5]}
+            py={[3, 5, 5]}
             color={colors.secondary}
           >
             <Img

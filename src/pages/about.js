@@ -7,10 +7,11 @@ import { width, textAlign, space, fontWeight, fontSize } from 'styled-system';
 import { Box, Flex } from '../components/Layout';
 import PageWrapper from '../components/PageWrapper';
 import colors from '../utils/colors';
+import media from '../utils/media';
 
 const imgStyle = css`
   border-radius: 33%;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8), 10px 10px 10px rgba(0, 0, 0, 0.8);
+  box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.8);
 `;
 
 const Heading1 = styled.h1`
@@ -41,6 +42,13 @@ const aboutWrapper = css`
   align-items: flex-start;
 `;
 
+const flexContainer = css`
+  box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.8);
+  ${media.mid`
+    box-shadow: none;
+  `};
+`;
+
 const About = ({ data }) => {
   const imageData = data.file.childImageSharp;
   const { description, skills } = data.allContentJson.edges[0].node.about;
@@ -57,7 +65,7 @@ const About = ({ data }) => {
         align="left"
         color="white"
       >
-        <Flex width="100ww" wrap={['wrap', 'wrap', 'wrap']} justifyContent="">
+        <Flex className={flexContainer} width="100ww" wrap={['wrap', 'wrap', 'wrap']} justifyContent="">
           <Heading1 width={[1, 1, 1]} textAlign="center">
             About Me
           </Heading1>

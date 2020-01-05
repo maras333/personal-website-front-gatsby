@@ -9,6 +9,7 @@ import colors from '../utils/colors';
 import PageWrapper from '../components/PageWrapper';
 import { ButtonSecondary } from '../components/Buttons';
 import feather from '../utils/feather';
+import media from '../utils/media';
 
 const converter = new showdown.Converter();
 
@@ -41,15 +42,24 @@ const articleWrapper = css`
   align-items: flex-start;
 `;
 
+const boxWrapper = css`
+  box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.8);
+  ${media.mid`
+    box-shadow: none;
+  `};
+`;
+
 const Template = ({ data }) => {
   const { strapiPost: post } = data;
   return (
     <PageWrapper>
       <Box className={articleWrapper} bg={colors.primary} py={[3, 3, 4]}>
         <Box
-          width={[1, 1, 1 / 2]}
+          className={boxWrapper}
+          width={[1, 1, 3 / 5]}
           m={['3.5rem 0 0 0', '3.5rem 0 0 0', '3.5rem auto 0 auto']}
-          px={[3, 3, 0]}
+          px={[3, 3, 4]}
+          py={[3, 3, 4]}
           color={colors.secondary}
         >
           <Box width={[1, 1, 1 / 3]} px={[0, 0, 0]}>

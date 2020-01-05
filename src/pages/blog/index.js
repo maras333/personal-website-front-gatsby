@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Box, Flex } from '../../components/Layout';
 import colors from '../../utils/colors';
 import PageWrapper from '../../components/PageWrapper';
+import media from '../../utils/media';
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -61,6 +62,13 @@ const blogWrapper = css`
   justify-content: center;
 `;
 
+const flexContainer = css`
+  box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.8);
+  ${media.mid`
+    box-shadow: none;
+  `};  
+`;
+
 const BlogIndex = ({ data }) => {
   const classes = useStyles();
   const { edges: posts } = data.allStrapiPost;
@@ -75,7 +83,7 @@ const BlogIndex = ({ data }) => {
         py={[2, 3, 4]}
         px={[2, 3, 6]}
       >
-        <Flex alignItems="center" flexDirection="column" wrap={['wrap', 'wrap', 'wrap']}>
+        <Flex className={flexContainer} alignItems="center" flexDirection="column" wrap={['wrap', 'wrap', 'wrap']}>
           <Heading1 textAlign="center">Blog</Heading1>
           <Container maxWidth="md">
             <Typography variant="h5" align="center" paragraph>

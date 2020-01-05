@@ -7,6 +7,7 @@ import { Box, Flex } from '../components/Layout';
 import PageWrapper from '../components/PageWrapper';
 import colors from '../utils/colors';
 import feather from '../utils/feather';
+import media from '../utils/media';
 
 const svgStyles = css`
   opacity: 0.5;
@@ -74,6 +75,13 @@ const contactWrapper = css`
   align-items: flex-start;
 `;
 
+const flexContainer = css`
+  box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.8);
+  ${media.mid`
+    box-shadow: none;
+  `};  
+`;
+
 const Contact = ({ data }) => {
   const {
     sentence,
@@ -94,7 +102,12 @@ const Contact = ({ data }) => {
         align="left"
         color="white"
       >
-        <Flex width="100vw" wrap={['wrap', 'wrap', 'wrap']} justifyContent="">
+        <Flex
+          className={flexContainer}
+          width="100vw"
+          wrap={['wrap', 'wrap', 'wrap']}
+          justifyContent=""
+        >
           <Heading1 width={[1, 1, 1]} textAlign="center">
             Contact
           </Heading1>

@@ -3,6 +3,7 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import styled, { css } from 'react-emotion';
 import { space } from 'styled-system';
+import moment from 'moment';
 import showdown from 'showdown';
 import { Box } from '../components/Layout';
 import colors from '../utils/colors';
@@ -40,6 +41,9 @@ const articleWrapper = css`
   justify-content: center;
   flex-grow: 1;
   align-items: flex-start;
+  & h5 {
+    text-align: right;
+  }
 `;
 
 const boxWrapper = css`
@@ -55,6 +59,11 @@ const Article = styled.article`
 
 const Template = ({ data }) => {
   const { strapiPost: post } = data;
+  const renderedText = post.updatedAt > post.createdAt ? 'updated at:' : 'created at:';
+  const formattedDate = moment(
+    post.updatedAt > post.createdAt ? post.updatedAt : post.createdAt
+  ).format('MMMM Do YYYY');
+
   return (
     <PageWrapper>
       <Box className={articleWrapper} bg={colors.primary} py={[3, 3, 4]}>
@@ -74,9 +83,12 @@ const Template = ({ data }) => {
             </Link>
           </Box>
           <Article className={articleStyle}>
+            <h5>
+              {renderedText} {formattedDate}
+            </h5>
             <h1>{post.title}</h1>
             <hr />
-            <h4>Written by {post.lead}</h4>
+            <h4>{post.lead}</h4>
             <div
               className={contentContainerStyle}
               dangerouslySetInnerHTML={{
@@ -104,6 +116,8 @@ export const query = graphql`
       title
       lead
       content
+      createdAt
+      updatedAt
     }
   }
 `;

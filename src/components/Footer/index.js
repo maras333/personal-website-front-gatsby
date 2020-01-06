@@ -51,6 +51,7 @@ const ulStyle = css`
   }
   & li {
     margin: 0;
+    line-height: 1.4;
   }
   ${media.mid`
     text-align: center;
@@ -107,7 +108,7 @@ const Li = styled.li`
 const Footer = ({ name, linkedin, github, facebook, instagram, email }) => (
   <div className={footerStyle}>
     <Box
-      maxWidth="1200px"
+      maxWidth="1280px"
       m="0 auto"
       p={[3, 3, 4, 0]}
       align="left"
@@ -211,7 +212,7 @@ Footer.defaultProps = {
   linkedin: 'https://www.linkedin.com/in/marek-czy%C5%BC-48bb4ab5/',
   github: 'https://github.com/maras333',
   facebook: 'https://www.facebook.com/marek.czyz.16',
-  instagram: 'https://www.instagram.com/marassowy/',
+  instagram: 'https://www.instagram.com/em51_maras/',
   email: 'maras.czyz@gmail.com'
 };
 

@@ -45,8 +45,8 @@ const articleWrapper = css`
 const boxWrapper = css`
   box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.8);
   ${media.mid`
-  box-shadow: none;
-`};
+    box-shadow: none;
+  `};
 `;
 
 const Article = styled.article`

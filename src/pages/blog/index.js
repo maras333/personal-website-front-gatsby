@@ -81,11 +81,11 @@ const BlogIndex = ({ data }) => {
         maxWidth={['100%', '100%', '100%']}
         m="0 auto"
         py={[2, 3, 4]}
-        px={[2, 3, 6]}
+        px={[2, 3, 4]}
       >
         <Flex className={flexContainer} alignItems="center" flexDirection="column" wrap={['wrap', 'wrap', 'wrap']}>
           <Heading1 textAlign="center">Blog</Heading1>
-          <Container maxWidth="md">
+          <Container maxWidth="lg">
             <Typography variant="h5" align="center" paragraph>
               This is landing page of my super turbo blog! You will find there a great content, so don't hesitate and try to spend here at least 10 minutes!
             </Typography>

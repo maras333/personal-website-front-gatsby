@@ -65,6 +65,9 @@ const Li = styled.li`
     font-size: 26px;
     transition: font-size 0.2s ease-in;
   }
+  ${media.mid`
+    padding: 0;
+  `};
 `;
 
 const contactWrapper = css`
@@ -98,8 +101,8 @@ const Contact = ({ data }) => {
         width={['100vw', '100vw', '100vw']}
         maxWidth={['100%', '100%', '100%']}
         m="0 auto"
-        px={[2, 3, 6]}
-        py={[2, 3, 4]}
+        px={[1, 3, 6]}
+        py={[3, 3, 5]}
         align="left"
         color="white"
       >
@@ -115,7 +118,7 @@ const Contact = ({ data }) => {
             width={[1, 1, 1]}
             textAlign="center"
             m={['0', '0', '0']}
-            px={['10%', '20%', '30%']}
+            px={['5%', '20%', '30%']}
             color={colors.secondary}
           >
             <Heading2>{sentence}</Heading2>

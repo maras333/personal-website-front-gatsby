@@ -3,7 +3,14 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import styled, { css } from 'react-emotion';
-import { width, textAlign, space, fontWeight, fontSize } from 'styled-system';
+import {
+  width,
+  textAlign,
+  space,
+  fontWeight,
+  fontSize,
+  lineHeight
+} from 'styled-system';
 import { Box, Flex } from '../components/Layout';
 import PageWrapper from '../components/PageWrapper';
 import colors from '../utils/colors';
@@ -23,7 +30,7 @@ const Heading2 = styled.h2`
   `;
 
 const DL = styled.dl`
-  ${space} ${textAlign} ${width};
+  ${space} ${textAlign} ${width}  ${lineHeight};
 `;
 
 const DT = styled.dt`
@@ -61,11 +68,15 @@ const About = ({ data }) => {
         maxWidth={['100%', '100%', '100%']}
         m="0 auto"
         px={[2, 3, 6]}
-        py={[2, 3, 4]}
+        py={[2, 3, 5]}
         align="left"
         color="white"
       >
-        <Flex className={flexContainer} width="100vw" wrap={['wrap', 'wrap', 'wrap']} justifyContent="">
+        <Flex
+          className={flexContainer}
+          width="100vw"
+          wrap={['wrap', 'wrap', 'wrap']}
+        >
           <Heading1 width={[1, 1, 1]} textAlign="center">
             About Me
           </Heading1>
@@ -98,9 +109,10 @@ const About = ({ data }) => {
             color={colors.secondary}
           >
             <Heading2 my={[0, 0, 0]}>{description.whatIDo}</Heading2>
-            <DL>
-              {skills.map(({ type, tools }) => (
-                <div>
+            <DL lineHeight="1.4">
+              {skills.map(({ type, tools }, index) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <div key={index}>
                   <DT
                     m={['1rem 0 0 0', '1rem 0 0 0', '1rem 0 0 0']}
                     fontSize={['20px', '20px', '20px']}

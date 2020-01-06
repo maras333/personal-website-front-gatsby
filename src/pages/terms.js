@@ -1,6 +1,7 @@
 /* eslint-disable no-undef, react/prop-types */
 import React from 'react';
-import { css } from 'react-emotion';
+import styled, { css } from 'react-emotion';
+import { width, textAlign, space } from 'styled-system';
 import { Box } from '../components/Layout';
 import PageWrapper from '../components/PageWrapper';
 import colors from '../utils/colors';
@@ -13,6 +14,10 @@ const termsWrapper = css`
   align-items: flex-start;
 `;
 
+const Heading1 = styled.h1`
+  ${space} ${textAlign} ${width};
+`;
+
 const Terms = () => (
   <PageWrapper>
     <Box className={termsWrapper} bg={colors.primary}>
@@ -23,7 +28,7 @@ const Terms = () => (
         py={[2, 3, 4]}
         color={colors.secondary}
       >
-        <h1>Terms of Service</h1>
+        <Heading1 textAlign="center">Terms of Service</Heading1>
         <p>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
           nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,

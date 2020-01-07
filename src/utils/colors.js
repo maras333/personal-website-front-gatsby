@@ -1,6 +1,6 @@
 const colors = {
   mainTheme: {
-    primary: '#002699',
+    primary: '#0066cc',
     secondary: '#fff',
     accent: '#333',
     highlight: '#f00e2e',

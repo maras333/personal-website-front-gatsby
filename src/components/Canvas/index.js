@@ -50,7 +50,7 @@ const ConstellationCanvas = props => {
             const opacity = 0.15;
             context.strokeStyle = `rgba(${color1},${color2},${color3},${opacity})`;
             context.fillStyle = `rgba(${color1},${color2},${color3},${opacity})`;
-            context.lineWidth = `4`;
+            context.lineWidth = (threshold * 2.2 - (distanceX + distanceY)) / 50;
             drawLine({ context, particle, particle2 });
           }
         }

@@ -12,7 +12,7 @@ const BackgroundSection = ({ className, children }) => (
           childImageSharp {
             fluid(
               cropFocus: CENTER
-              duotone: { highlight: "#30098e", shadow: "#0066cc", opacity: 70 }
+              duotone: { highlight: "#393b41", shadow: "#474a51", opacity: 80 }
               grayscale: false
               quality: 90
               maxWidth: 1920

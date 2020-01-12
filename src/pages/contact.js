@@ -1,10 +1,11 @@
 /* eslint-disable no-undef, react/prop-types */
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 import styled, { css } from 'react-emotion';
-import { width, textAlign, space } from 'styled-system';
+import { width, textAlign, space, zIndex } from 'styled-system';
 import { Box, Flex } from '../components/Layout';
 import PageWrapper from '../components/PageWrapper';
+import ConstellationCanvas from '../components/Canvas';
 import colors from '../utils/colors';
 import feather from '../utils/feather';
 import media from '../utils/media';
@@ -50,7 +51,7 @@ const ulStyle = css`
 `;
 
 const Heading1 = styled.h1`
-  ${space} ${textAlign} ${width};
+  ${space} ${textAlign} ${width} ${zIndex};
 `;
 
 const Heading2 = styled.h2`
@@ -84,6 +85,8 @@ const flexContainer = css`
   `};
   flex-direction: column;
   justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
 `;
 
 const Contact = ({ data }) => {
@@ -93,6 +96,16 @@ const Contact = ({ data }) => {
     email,
     phone
   } = data.allContentJson.edges[0].node.contact;
+
+  const [elHeight, setElHeight] = useState(0);
+  const [elWidth, setElWidth] = useState(0);
+  const flexEl = useRef();
+
+  useEffect(() => {
+    setElHeight(flexEl.current.clientHeight);
+    setElWidth(flexEl.current.clientWidth);
+  }, []);
+
   return (
     <PageWrapper>
       <Box
@@ -110,13 +123,16 @@ const Contact = ({ data }) => {
           className={flexContainer}
           width="100vw"
           wrap={['wrap', 'wrap', 'wrap']}
+          innerRef={flexEl}
         >
-          <Heading1 width={[1, 1, 1]} textAlign="center">
+          <ConstellationCanvas width={elWidth} height={elHeight} />
+          <Heading1 width={[1, 1, 1]} textAlign="center" zIndex={1}>
             Contact
           </Heading1>
           <Box
             width={[1, 1, 1]}
             textAlign="center"
+            zIndex={1}
             m={['0', '0', '0']}
             px={['5%', '20%', '30%']}
             color={colors.secondary}

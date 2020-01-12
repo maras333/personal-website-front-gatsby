@@ -1,15 +1,16 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 import Link from 'gatsby-link';
 import Img from 'gatsby-image';
 import styled, { css } from 'react-emotion';
-import { width, textAlign, space } from 'styled-system';
+import { width, textAlign, space, zIndex } from 'styled-system';
 import { Container, Grid, Card, CardMedia, CardContent, Typography, CardActions, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Flex } from '../../components/Layout';
 import colors from '../../utils/colors';
 import PageWrapper from '../../components/PageWrapper';
+import ConstellationCanvas from '../../components/Canvas';
 import media from '../../utils/media';
 
 const useStyles = makeStyles(theme => ({
@@ -20,9 +21,13 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6),
   },
+  subtitleContainer: {
+    zIndex: 1
+  },
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
+    zIndex: 1
   },
   card: {
     height: '100%',
@@ -52,7 +57,7 @@ const listStyle = css`
 `;
 
 const Heading1 = styled.h1`
-  ${space} ${textAlign} ${width};
+  ${space} ${textAlign} ${width} ${zIndex};
 `;
 
 const blogWrapper = css`
@@ -67,11 +72,23 @@ const flexContainer = css`
   ${media.mid`
     box-shadow: none;
   `};  
+  position: relative;
+  overflow: hidden;  
 `;
 
 const BlogIndex = ({ data }) => {
   const classes = useStyles();
   const { edges: posts } = data.allStrapiPost;
+
+  const [elHeight, setElHeight] = useState(0);
+  const [elWidth, setElWidth] = useState(0);
+  const flexEl = useRef();
+
+  useEffect(() => {
+    setElHeight(flexEl.current.clientHeight);
+    setElWidth(flexEl.current.clientWidth);
+  }, []);
+
   return (
     <PageWrapper>
       <Box 
@@ -83,9 +100,10 @@ const BlogIndex = ({ data }) => {
         py={[2, 3, 4]}
         px={[2, 3, 4]}
       >
-        <Flex className={flexContainer} alignItems="center" flexDirection="column" wrap={['wrap', 'wrap', 'wrap']}>
-          <Heading1 textAlign="center">Blog</Heading1>
-          <Container maxWidth="lg">
+        <Flex innerRef={flexEl} className={flexContainer} alignItems="center" flexDirection="column" wrap={['wrap', 'wrap', 'wrap']}>
+          <ConstellationCanvas width={elWidth} height={elHeight} />
+          <Heading1 zIndex={1} textAlign="center">Blog</Heading1>
+          <Container className={classes.subtitleContainer} maxWidth="lg">
             <Typography variant="h5" align="center" paragraph>
               This is landing page of my super turbo blog! You will find there a great content, so don't hesitate and try to spend here at least 10 minutes!
             </Typography>

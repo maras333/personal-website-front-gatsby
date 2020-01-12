@@ -21,10 +21,12 @@ injectGlobal`
 
   html {
     min-width: 320px;
+    max-width: 1920px;
   }
   body {
     padding-top: 3.5rem;
     min-width: 320px;
+    max-width: 1920px;
   }
   a {
     text-decoration: none;

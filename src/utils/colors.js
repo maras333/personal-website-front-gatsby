@@ -1,9 +1,9 @@
 const colors = {
   mainTheme: {
-    primary: '#0066cc',
+    primary: '#474a51',
     secondary: '#fff',
     accent: '#333',
-    highlight: '#f00e2e',
+    highlight: '#393b41',
     shadow: '#192550'
   },
   auxTheme: {

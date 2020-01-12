@@ -1,5 +1,5 @@
 /* eslint-disable no-undef, react/prop-types */
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import styled, { css } from 'react-emotion';
@@ -9,10 +9,12 @@ import {
   space,
   fontWeight,
   fontSize,
-  lineHeight
+  lineHeight,
+  zIndex
 } from 'styled-system';
 import { Box, Flex } from '../components/Layout';
 import PageWrapper from '../components/PageWrapper';
+import ConstellationCanvas from '../components/Canvas';
 import colors from '../utils/colors';
 import media from '../utils/media';
 
@@ -22,7 +24,7 @@ const imgStyle = css`
 `;
 
 const Heading1 = styled.h1`
-  ${space} ${textAlign} ${width};
+  ${space} ${textAlign} ${width} ${zIndex};
   `;
 
 const Heading2 = styled.h2`
@@ -54,11 +56,23 @@ const flexContainer = css`
     box-shadow: none;
   `};
   align-items: flex-start;
+  position: relative;
+  overflow: hidden;
 `;
 
 const About = ({ data }) => {
   const imageData = data.file.childImageSharp;
   const { description, skills } = data.allContentJson.edges[0].node.about;
+
+  const [elHeight, setElHeight] = useState(0);
+  const [elWidth, setElWidth] = useState(0);
+  const flexEl = useRef();
+
+  useEffect(() => {
+    setElHeight(flexEl.current.clientHeight);
+    setElWidth(flexEl.current.clientWidth);
+  }, []);
+
   return (
     <PageWrapper>
       <Box
@@ -76,8 +90,10 @@ const About = ({ data }) => {
           className={flexContainer}
           width="100vw"
           wrap={['wrap', 'wrap', 'wrap']}
+          innerRef={flexEl}
         >
-          <Heading1 width={[1, 1, 1]} textAlign="center">
+          <ConstellationCanvas width={elWidth} height={elHeight} />
+          <Heading1 width={[1, 1, 1]} textAlign="center" zIndex={1}>
             About Me
           </Heading1>
           <Box
@@ -86,6 +102,7 @@ const About = ({ data }) => {
             px={[5, 5, 5]}
             py={[3, 5, 5]}
             color={colors.secondary}
+            zIndex={1}
           >
             <Img
               className={imgStyle}
@@ -98,6 +115,7 @@ const About = ({ data }) => {
             m={['2rem 0 0 0', '2rem 0 0 0', '2rem 0 0 0']}
             px={[3, 3, 4]}
             color={colors.secondary}
+            zIndex={1}
           >
             <Heading2 my={[0, 0, 0]}>{description.intro}</Heading2>
             <div dangerouslySetInnerHTML={{ __html: description.full }} />
@@ -107,6 +125,7 @@ const About = ({ data }) => {
             m={['2rem 0 0 0', '2rem 0 0 0', '2rem 0 0 0']}
             px={[3, 3, 4]}
             color={colors.secondary}
+            zIndex={1}
           >
             <Heading2 my={[0, 0, 0]}>{description.whatIDo}</Heading2>
             <DL lineHeight="1.4">

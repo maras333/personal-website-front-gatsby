@@ -11,7 +11,8 @@ import {
   flexDirection,
   alignItems,
   style,
-  height
+  height,
+  zIndex
 } from 'styled-system';
 
 const wrap = style({
@@ -26,7 +27,7 @@ const transform = style({
 
 export const Box = styled.div`
   overflow: hidden;
-  ${space} ${width} ${maxWidth} ${fontSize} ${color} ${textAlign} ${height} ${transform} ${overflow};
+  ${space} ${width} ${maxWidth} ${fontSize} ${color} ${textAlign} ${height} ${transform} ${overflow} ${zIndex};
 `;
 
 export const Flex = styled.div`

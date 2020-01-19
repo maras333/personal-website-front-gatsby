@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     transition: 'all 0.3s cubic-bezier(.5,.8,.5,1)',
     '&:hover': {
       boxShadow: '-10px -10px 20px 5px rgba(0, 0, 0, 0.8)'
-    }   
+    }
   },
   cardMedia: {
     paddingTop: '56.25%', // 16:9
@@ -91,9 +91,9 @@ const BlogIndex = ({ data }) => {
 
   return (
     <PageWrapper>
-      <Box 
+      <Box
         className={blogWrapper}
-        bg={colors.primary} 
+        bg={colors.primary}
         width={['100vw', '100vw', '100vw']}
         maxWidth={['100%', '100%', '100%']}
         m="0 auto"
@@ -111,28 +111,34 @@ const BlogIndex = ({ data }) => {
           <Container className={classes.cardGrid}>
             {/* End hero unit */}
             <Grid container spacing={10}>
-              {posts.map(({ node: post }, index) => (
-                <Grid item key={post.id} xs={12} sm={6} md={4}>
-                  <Card className={classes.card}>
-                    <CardMedia>
-                      <Img fluid={post.image.childImageSharp.fluid} />
-                    </CardMedia>
-                    <CardContent className={classes.cardContent}>
-                      <Typography className={classes.typography} gutterBottom variant="h5" component="h2">
-                        {post.title}
-                      </Typography>
-                      <Typography className={classes.typography}>
-                        {post.lead}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button className={classes.typography} size="large">
-                        <Link to={`/blog/${post.slug}`}>READ</Link>
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
-              ))}
+              {posts.length
+                ? posts.map(({ node: post }, index) => (
+                  <Grid item key={post.id} xs={12} sm={6} md={4}>
+                    <Card className={classes.card}>
+                      <CardMedia>
+                        {
+                          post.image
+                            ? <Img fluid={post.image.childImageSharp.fluid} />
+                            : ''
+                        }
+                      </CardMedia>
+                      <CardContent className={classes.cardContent}>
+                        <Typography className={classes.typography} gutterBottom variant="h5" component="h2">
+                          {post.title}
+                        </Typography>
+                        <Typography className={classes.typography}>
+                          {post.lead}
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                        <Button className={classes.typography} size="large">
+                          <Link to={`/blog/${post.slug}`}>READ</Link>
+                        </Button>
+                      </CardActions>
+                    </Card>
+                  </Grid>
+                ))
+                : ''}
             </Grid>
           </Container>
         </Flex>

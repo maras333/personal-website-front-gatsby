@@ -39,7 +39,9 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: `http://cms.marekczyz.xyz`,
+        apiURL: process.env.DEPLOY_URL
+          ? `http://cms.marekczyz.xyz`
+          : `http://localhost:1337`,
         // FOR DEVELOPMENT
         // apiURL: `http://localhost:1337`,
         queryLimit: 1000, // Default to 100

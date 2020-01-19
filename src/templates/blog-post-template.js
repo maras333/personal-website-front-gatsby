@@ -59,7 +59,8 @@ const Article = styled.article`
 
 const Template = ({ data }) => {
   const { strapiPost: post } = data;
-  const renderedText = post.updatedAt > post.createdAt ? 'updated at:' : 'created at:';
+  const renderedText =
+    post.updatedAt > post.createdAt ? 'updated at:' : 'created at:';
   const formattedDate = moment(
     post.updatedAt > post.createdAt ? post.updatedAt : post.createdAt
   ).format('MMMM Do YYYY');

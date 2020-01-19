@@ -39,31 +39,59 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 };
 
-exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions;
-  const getArticles = makeRequest(graphql, `
-    {
-      allStrapiPost {
-        edges {
-          node {
-            id
-            slug
+exports.createPages = async ({ graphql, actions, reporter }) => {
+  try {
+    const { createPage } = actions;
+    const blogPostTemplate = path.resolve(`src/templates/blog-post-template.js`);
+    const categoryPostsTemplate = path.resolve(`src/templates/blog-category-posts-template.js`);
+    const result = await makeRequest(graphql, `
+      query {
+        allStrapiPost {
+          edges {
+            node {
+              id
+              slug
+            }
           }
         }
-      }
-    }      
-    `
-  ).then(result => {
-    result.data.allStrapiPost.edges.forEach(({ node }) => {
+        allStrapiCategory {
+          edges {
+            node {
+              id
+              slug
+            }
+          }
+        }
+      }      
+      `
+    );
+    // handling errors
+    if (result.errors) {
+      reporter.panicOnBuild(`Error while running GraphQL query!`)
+      return
+    }
+
+    const allPosts = result.data.allStrapiPost.edges;
+    allPosts.forEach(({ node }) => {
       createPage({
         path: `/blog/${node.slug}`,
-        component: path.resolve(`src/templates/blog-post-template.js`),
+        component: blogPostTemplate,
         context: {
           slug: node.slug
         }
-      });
+      });    
+    })
+
+    const allCategories = result.data.allStrapiCategory.edges;
+    allCategories.forEach(({ node }) => {
+      createPage({
+        path: `/blog/category/${node.slug}`,
+        component: categoryPostsTemplate,
+        context: {
+          slug: node.slug
+        }
+      });       
     });
-  });
+  } catch(e) { console.log(e); }
   // Query for articles nodes to use in creating pages.
-  return getArticles;
 };

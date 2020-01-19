@@ -39,11 +39,11 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: process.env.DEPLOY_URL
-          ? `http://cms.marekczyz.xyz`
-          : `http://localhost:1337`,
+        // apiURL: process.env.DEPLOY_URL
+        //   ? `http://cms.marekczyz.xyz`
+        //   : `http://localhost:1337`,
         // FOR DEVELOPMENT
-        // apiURL: `http://localhost:1337`,
+        apiURL: `http://cms.marekczyz.xyz`,
         queryLimit: 1000, // Default to 100
         contentTypes: [`user`, `post`, `tag`, `category`],
         // Possibility to login with a strapi user, when content types are not publically available (optional).

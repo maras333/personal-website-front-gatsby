@@ -152,7 +152,7 @@ export const query = graphql`
   query BlogIndexQuery {
     file(relativePath: { eq: "placeholder-post-image.jpg" }) {
       childImageSharp {
-        fluid(grayscale: true, maxWidth: 1000, quality: 70, cropFocus: CENTER ) {
+        fluid(grayscale: true, maxWidth: 300, maxHeight: 200, quality: 70, cropFocus: CENTER ) {
           ...GatsbyImageSharpFluid
         }
       }

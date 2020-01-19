@@ -79,6 +79,7 @@ const flexContainer = css`
 const BlogIndex = ({ data }) => {
   const classes = useStyles();
   const { edges: posts } = data.allStrapiPost;
+  const imageData = data.file.childImageSharp;
 
   const [elHeight, setElHeight] = useState(0);
   const [elWidth, setElWidth] = useState(0);
@@ -119,7 +120,7 @@ const BlogIndex = ({ data }) => {
                         {
                           post.image
                             ? <Img fluid={post.image.childImageSharp.fluid} />
-                            : ''
+                            : <Img fluid={imageData.fluid} />
                         }
                       </CardMedia>
                       <CardContent className={classes.cardContent}>
@@ -149,6 +150,13 @@ const BlogIndex = ({ data }) => {
 
 export const query = graphql`
   query BlogIndexQuery {
+    file(relativePath: { eq: "placeholder-post-image.jpg" }) {
+      childImageSharp {
+        fluid(grayscale: true, maxWidth: 1000, quality: 70, cropFocus: CENTER ) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }    
     allStrapiPost {
       edges {
         node {

@@ -62,9 +62,10 @@ const Heading1 = styled.h1`
 
 const blogWrapper = css`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-grow: 1;
   justify-content: center;
+  align-items: center;
 `;
 
 const flexContainer = css`
@@ -76,9 +77,26 @@ const flexContainer = css`
   overflow: hidden;  
 `;
 
+const subcategoriesContainer = css`
+  justify-content: center;
+`;
+
+const Ul = styled.ul`
+  color: ${colors.secondary};
+  font-weight: 700;
+  padding: 1rem 0;
+`;
+
+const Li = styled.li`
+  display: inline;
+  padding: 0.5rem 1rem;
+`;
+
+
 const BlogIndex = ({ data }) => {
   const classes = useStyles();
   const { edges: posts } = data.allStrapiPost;
+  const { edges: categories } = data.allStrapiCategory;
   const imageData = data.file.childImageSharp;
 
   const [elHeight, setElHeight] = useState(0);
@@ -98,10 +116,26 @@ const BlogIndex = ({ data }) => {
         width={['100vw', '100vw', '100vw']}
         maxWidth={['100%', '100%', '100%']}
         m="0 auto"
-        py={[2, 3, 4]}
+        pt={[2, 3, 0]}
+        pb={[2, 3, 4]}
         px={[2, 3, 4]}
       >
-        <Flex innerRef={flexEl} className={flexContainer} alignItems="center" flexDirection="column" wrap={['wrap', 'wrap', 'wrap']}>
+        <Flex
+          width={[1, 1, 2 / 3]}
+          flexDirection="row" 
+          wrap={['wrap', 'wrap', 'wrap']}  
+          alignItems="center"  
+          className={subcategoriesContainer}    
+        >
+          <Ul>
+            {
+              categories.map(({ node: category }, index) => (
+                <Li>{`#${category.name}`}</Li>
+              ))
+            }
+          </Ul>
+        </Flex>
+        <Flex width={[1, 1, 2 / 3]} innerRef={flexEl} className={flexContainer} alignItems="center" flexDirection="column" wrap={['wrap', 'wrap', 'wrap']}>
           <ConstellationCanvas width={elWidth} height={elHeight} />
           <Heading1 zIndex={1} textAlign="center">Blog</Heading1>
           <Container className={classes.subtitleContainer} maxWidth="lg">
@@ -175,6 +209,14 @@ export const query = graphql`
         }
       }
     }
+    allStrapiCategory {
+      edges {
+        node {
+          id
+          name
+        }
+      }
+    }   
   }
 `;
 /* eslint-enable */

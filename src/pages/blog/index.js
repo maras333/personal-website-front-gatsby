@@ -105,7 +105,8 @@ const BlogIndex = ({ data }) => {
           <Heading1 zIndex={1} textAlign="center">Blog</Heading1>
           <Container className={classes.subtitleContainer} maxWidth="lg">
             <Typography variant="h5" align="center" paragraph>
-              This is landing page of my super turbo blog! You will find there a great content, so don't hesitate and try to spend here at least 10 minutes!
+              The main purpose of this blog is to share my experience on programming, cycling and running. That was the original idea and motivation to set it up:)
+              So if you like some numbers, statistics, sports and everything connected with workouts, it may be quite a stuff for you, but I do not promise!:P 
             </Typography>
           </Container>
           <Container className={classes.cardGrid}>

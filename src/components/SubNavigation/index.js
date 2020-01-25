@@ -29,14 +29,15 @@ const Li = styled.li`
   display: flex;
   align-items: center;
   padding: 0 1rem;
+  font-size: 24px;
   transition: font-size 0.15s ease-in;
-  &:hover, :active {
+  &:hover, &:active {
     text-decoration: none;
-    font-size: 26px;
+    font-size: 28px;
     transition: font-size 0.15s ease-in;
     ${media.small`
       transition: none;
-  `};     
+    `};     
   }  
   ${media.small`
     padding: 0.3rem 0;

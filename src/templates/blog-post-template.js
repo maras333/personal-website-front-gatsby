@@ -30,10 +30,9 @@ const contentContainerStyle = css`
     }
   }
   p {
-    & :has(+ img) {
-      text-align: center;
-    }
     & img {
+      display: block;
+      margin: 0 auto;
       max-width: 66%;
       ${media.small`
       max-width: 100%;

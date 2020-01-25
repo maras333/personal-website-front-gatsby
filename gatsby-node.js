@@ -85,7 +85,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     const allCategories = result.data.allStrapiCategory.edges;
     allCategories.forEach(({ node }) => {
       createPage({
-        path: `/blog/category/${node.slug}`,
+        path: `/blog/categories/${node.slug}`,
         component: categoryPostsTemplate,
         context: {
           slug: node.slug

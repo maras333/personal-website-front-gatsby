@@ -11,6 +11,7 @@ import { Box, Flex } from '../../components/Layout';
 import colors from '../../utils/colors';
 import PageWrapper from '../../components/PageWrapper';
 import ConstellationCanvas from '../../components/Canvas';
+import SubNavigation from '../../components/SubNavigation';
 import media from '../../utils/media';
 
 const useStyles = makeStyles(theme => ({
@@ -50,12 +51,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const listStyle = css`
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-`;
-
 const Heading1 = styled.h1`
   ${space} ${textAlign} ${width} ${zIndex};
 `;
@@ -64,7 +59,7 @@ const blogWrapper = css`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `;
 
@@ -76,22 +71,6 @@ const flexContainer = css`
   position: relative;
   overflow: hidden;  
 `;
-
-const subcategoriesContainer = css`
-  justify-content: center;
-`;
-
-const Ul = styled.ul`
-  color: ${colors.secondary};
-  font-weight: 700;
-  padding: 1rem 0;
-`;
-
-const Li = styled.li`
-  display: inline;
-  padding: 0.5rem 1rem;
-`;
-
 
 const BlogIndex = ({ data }) => {
   const classes = useStyles();
@@ -120,21 +99,7 @@ const BlogIndex = ({ data }) => {
         pb={[2, 3, 4]}
         px={[2, 3, 4]}
       >
-        <Flex
-          width={[1, 1, 2 / 3]}
-          flexDirection="row" 
-          wrap={['wrap', 'wrap', 'wrap']}  
-          alignItems="center"  
-          className={subcategoriesContainer}    
-        >
-          <Ul>
-            {
-              categories.map(({ node: category }, index) => (
-                <Li>{`#${category.name}`}</Li>
-              ))
-            }
-          </Ul>
-        </Flex>
+        <SubNavigation categories={categories} width={[1, 1, 2 / 3]}></SubNavigation>
         <Flex width={[1, 1, 2 / 3]} innerRef={flexEl} className={flexContainer} alignItems="center" flexDirection="column" wrap={['wrap', 'wrap', 'wrap']}>
           <ConstellationCanvas width={elWidth} height={elHeight} />
           <Heading1 zIndex={1} textAlign="center">Blog</Heading1>
@@ -214,6 +179,7 @@ export const query = graphql`
         node {
           id
           name
+          slug
         }
       }
     }   

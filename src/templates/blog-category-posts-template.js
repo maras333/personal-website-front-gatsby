@@ -11,6 +11,7 @@ import { Box, Flex } from '../components/Layout';
 import colors from '../utils/colors';
 import PageWrapper from '../components/PageWrapper';
 import ConstellationCanvas from '../components/Canvas';
+import SubNavigation from '../components/SubNavigation';
 import media from '../utils/media';
 
 const useStyles = makeStyles(theme => ({
@@ -50,21 +51,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const listStyle = css`
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-`;
-
 const Heading1 = styled.h1`
     ${space} ${textAlign} ${width} ${zIndex};
   `;
 
 const blogWrapper = css`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-grow: 1;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 const flexContainer = css`
@@ -79,8 +75,18 @@ const flexContainer = css`
 const CategoryPostsTemplate = ({ data }) => {
   const classes = useStyles();
   const { edges: posts } = data.allStrapiPost;
+  const { edges: categories } = data.allStrapiCategory;
   const imageData = data.file.childImageSharp;
   const categoryData = data.strapiCategory;
+
+  const [elHeight, setElHeight] = useState(0);
+  const [elWidth, setElWidth] = useState(0);
+  const flexEl = useRef();
+
+  useEffect(() => {
+    setElHeight(flexEl.current.clientHeight);
+    setElWidth(flexEl.current.clientWidth);
+  }, []);
 
   return (
     <PageWrapper>
@@ -90,17 +96,22 @@ const CategoryPostsTemplate = ({ data }) => {
         width={['100vw', '100vw', '100vw']}
         maxWidth={['100%', '100%', '100%']}
         m="0 auto"
-        py={[2, 3, 4]}
+        pt={[2, 3, 0]}
+        pb={[2, 3, 4]}
         px={[2, 3, 4]}
       >
+        <SubNavigation categories={categories} width={[1, 1, 2 / 3]}></SubNavigation>
         <Flex
           className={flexContainer}
+          innerRef={flexEl}
+          width={[1, 1, 2 / 3]}
           alignItems="center"
           flexDirection="column"
           wrap={['wrap', 'wrap', 'wrap']}
         >
+          <ConstellationCanvas width={elWidth} height={elHeight} />
           <Heading1 zIndex={1} textAlign="center">
-            Blog
+            {`${categoryData.name.charAt(0).toUpperCase()}${categoryData.name.slice(1)}`}
           </Heading1>
           <Container className={classes.subtitleContainer} maxWidth="lg">
             <Typography variant="h5" align="center" paragraph>
@@ -181,6 +192,15 @@ export const query = graphql`
     strapiCategory(slug: {eq: $slug}) {
       name 
     }
+    allStrapiCategory {
+      edges {
+        node {
+          id
+          name
+          slug
+        }
+      }
+    }       
   }
 `;
 /* eslint-enable */

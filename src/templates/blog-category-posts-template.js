@@ -7,20 +7,20 @@ import styled, { css } from 'react-emotion';
 import { width, textAlign, space, zIndex } from 'styled-system';
 import { Container, Grid, Card, CardMedia, CardContent, Typography, CardActions, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Flex } from '../../components/Layout';
-import colors from '../../utils/colors';
-import PageWrapper from '../../components/PageWrapper';
-import ConstellationCanvas from '../../components/Canvas';
-import SubNavigation from '../../components/SubNavigation';
-import media from '../../utils/media';
+import { Box, Flex } from '../components/Layout';
+import colors from '../utils/colors';
+import PageWrapper from '../components/PageWrapper';
+import ConstellationCanvas from '../components/Canvas';
+import SubNavigation from '../components/SubNavigation';
+import media from '../utils/media';
 
 const useStyles = makeStyles(theme => ({
   icon: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
+    padding: theme.spacing(8, 0, 6)
   },
   subtitleContainer: {
     zIndex: 1
@@ -41,10 +41,10 @@ const useStyles = makeStyles(theme => ({
     }
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%' // 16:9
   },
   cardContent: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   typography: {
     color: colors.primary
@@ -52,8 +52,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Heading1 = styled.h1`
-  ${space} ${textAlign} ${width} ${zIndex};
-`;
+    ${space} ${textAlign} ${width} ${zIndex};
+  `;
 
 const blogWrapper = css`
   display: flex;
@@ -66,17 +66,18 @@ const blogWrapper = css`
 const flexContainer = css`
   box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.8);
   ${media.mid`
-    box-shadow: none;
-  `};  
+      box-shadow: none;
+    `};
   position: relative;
-  overflow: hidden;  
+  overflow: hidden;
 `;
 
-const BlogIndex = ({ data }) => {
+const CategoryPostsTemplate = ({ data }) => {
   const classes = useStyles();
   const { edges: posts } = data.allStrapiPost;
   const { edges: categories } = data.allStrapiCategory;
   const imageData = data.file.childImageSharp;
+  const categoryData = data.strapiCategory;
 
   const [elHeight, setElHeight] = useState(0);
   const [elWidth, setElWidth] = useState(0);
@@ -100,12 +101,21 @@ const BlogIndex = ({ data }) => {
         px={[2, 3, 4]}
       >
         <SubNavigation categories={categories} width={[1, 1, 2 / 3]}></SubNavigation>
-        <Flex width={[1, 1, 2 / 3]} innerRef={flexEl} className={flexContainer} alignItems="center" flexDirection="column" wrap={['wrap', 'wrap', 'wrap']}>
+        <Flex
+          className={flexContainer}
+          innerRef={flexEl}
+          width={[1, 1, 2 / 3]}
+          alignItems="center"
+          flexDirection="column"
+          wrap={['wrap', 'wrap', 'wrap']}
+        >
           <ConstellationCanvas width={elWidth} height={elHeight} />
-          <Heading1 zIndex={1} textAlign="center">Blog</Heading1>
+          <Heading1 zIndex={1} textAlign="center">
+            {`${categoryData.name.charAt(0).toUpperCase()}${categoryData.name.slice(1)}`}
+          </Heading1>
           <Container className={classes.subtitleContainer} maxWidth="lg">
             <Typography variant="h5" align="center" paragraph>
-              This is landing page of my super turbo blog! You will find there a great content, so don't hesitate and try to spend here at least 10 minutes!
+              {categoryData.name} category. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel massa nec lorem consectetur varius. Suspendisse potenti. Donec vitae dui scelerisque, pellentesque leo vel
             </Typography>
           </Container>
           <Container className={classes.cardGrid}>
@@ -114,30 +124,35 @@ const BlogIndex = ({ data }) => {
               {posts.length
                 ? posts.map(({ node: post }, index) => (
                   <Grid item key={post.id} xs={12} sm={6} md={4}>
-                    <Card className={classes.card}>
+                      <Card className={classes.card}>
                       <CardMedia>
-                        {
-                          post.image
-                            ? <Img fluid={post.image.childImageSharp.fluid} />
-                            : <Img fluid={imageData.fluid} />
-                        }
-                      </CardMedia>
+                          {post.image ? (
+                          <Img fluid={post.image.childImageSharp.fluid} />
+                          ) : (
+                            <Img fluid={imageData.fluid} />
+                          )}
+                        </CardMedia>
                       <CardContent className={classes.cardContent}>
-                        <Typography className={classes.typography} gutterBottom variant="h5" component="h2">
+                          <Typography
+                          className={classes.typography}
+                          gutterBottom
+                          variant="h5"
+                          component="h2"
+                        >
                           {post.title}
                         </Typography>
-                        <Typography className={classes.typography}>
+                          <Typography className={classes.typography}>
                           {post.lead}
                         </Typography>
-                      </CardContent>
+                        </CardContent>
                       <CardActions>
-                        <Button className={classes.typography} size="large">
+                          <Button className={classes.typography} size="large">
                           <Link to={`/blog/${post.slug}`}>READ</Link>
                         </Button>
-                      </CardActions>
+                        </CardActions>
                     </Card>
-                  </Grid>
-                ))
+                    </Grid>
+                  ))
                 : ''}
             </Grid>
           </Container>
@@ -148,7 +163,7 @@ const BlogIndex = ({ data }) => {
 };
 
 export const query = graphql`
-  query BlogIndexQuery {
+  query BlogCategoryPostsQuery($slug: String) {
     file(relativePath: { eq: "placeholder-post-image.jpg" }) {
       childImageSharp {
         fluid(grayscale: true, maxWidth: 300, maxHeight: 200, quality: 70, cropFocus: CENTER ) {
@@ -156,7 +171,7 @@ export const query = graphql`
         }
       }
     }    
-    allStrapiPost {
+    allStrapiPost(filter: {category: {slug: {eq: $slug}}}) {
       edges {
         node {
           id
@@ -174,6 +189,9 @@ export const query = graphql`
         }
       }
     }
+    strapiCategory(slug: {eq: $slug}) {
+      name 
+    }
     allStrapiCategory {
       edges {
         node {
@@ -182,9 +200,9 @@ export const query = graphql`
           slug
         }
       }
-    }   
+    }       
   }
 `;
 /* eslint-enable */
 
-export default BlogIndex;
+export default CategoryPostsTemplate;

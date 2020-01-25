@@ -5,7 +5,7 @@ import styled, { css } from 'react-emotion';
 import { space } from 'styled-system';
 import moment from 'moment';
 import showdown from 'showdown';
-import { Box } from '../components/Layout';
+import { Box, Flex } from '../components/Layout';
 import colors from '../utils/colors';
 import PageWrapper from '../components/PageWrapper';
 import { ButtonSecondary } from '../components/Buttons';
@@ -35,6 +35,12 @@ const articleStyle = css`
   }
 `;
 
+const buttonPostTemplateStyle = css`
+  ${media.small`
+    padding: 0.5rem;
+  `};
+`;
+
 const articleWrapper = css`
   display: flex;
   flex-direction: row;
@@ -59,7 +65,8 @@ const Article = styled.article`
 
 const Template = ({ data }) => {
   const { strapiPost: post } = data;
-  const renderedText = post.updatedAt > post.createdAt ? 'updated at:' : 'created at:';
+  const renderedText =
+    post.updatedAt > post.createdAt ? 'updated at:' : 'created at:';
   const formattedDate = moment(
     post.updatedAt > post.createdAt ? post.updatedAt : post.createdAt
   ).format('MMMM Do YYYY');
@@ -74,13 +81,26 @@ const Template = ({ data }) => {
           py={[3, 3, 4]}
           color={colors.secondary}
         >
-          <Box width={[1, 1, 1 / 3]} px={[0, 0, 0]}>
-            <Link to="/blog">
-              <ButtonSecondary fontSize="24px">
-                {feather('skip-back', ['24', '24'], svgStyles)}{' '}
-                <span className={svgStyles}>Back</span>
-              </ButtonSecondary>
-            </Link>
+          <Box width={[1, 1, 1]} px={[0, 0, 0]}>
+            <Flex flexDirection="row" justifyContent="space-between">
+              <Link to="/blog">
+                <ButtonSecondary
+                  className={buttonPostTemplateStyle}
+                  fontSize="24px"
+                >
+                  {feather('skip-back', ['24', '24'], svgStyles)}{' '}
+                  <span className={svgStyles}>Back</span>
+                </ButtonSecondary>
+              </Link>
+              <Link to={`/blog/categories/${post.category.slug}`}>
+                <ButtonSecondary
+                  className={buttonPostTemplateStyle}
+                  fontSize="24px"
+                >
+                  <span className={svgStyles}>Go to category</span>
+                </ButtonSecondary>
+              </Link>
+            </Flex>
           </Box>
           <Article className={articleStyle}>
             <h5>
@@ -96,13 +116,26 @@ const Template = ({ data }) => {
               }}
             />
           </Article>
-          <Box width={[1, 1, 1 / 3]} px={[0, 0, 0]}>
-            <Link to="/blog">
-              <ButtonSecondary fontSize="24px">
-                {feather('skip-back', ['24', '24'], svgStyles)}{' '}
-                <span className={svgStyles}>Back</span>
-              </ButtonSecondary>
-            </Link>
+          <Box width={[1, 1, 1]} px={[0, 0, 0]}>
+            <Flex flexDirection="row" justifyContent="space-between">
+              <Link to="/blog">
+                <ButtonSecondary
+                  className={buttonPostTemplateStyle}
+                  fontSize="24px"
+                >
+                  {feather('skip-back', ['24', '24'], svgStyles)}{' '}
+                  <span className={svgStyles}>Back</span>
+                </ButtonSecondary>
+              </Link>
+              <Link to={`/blog/categories/${post.category.slug}`}>
+                <ButtonSecondary
+                  className={buttonPostTemplateStyle}
+                  fontSize="24px"
+                >
+                  <span className={svgStyles}>Go to category</span>
+                </ButtonSecondary>
+              </Link>
+            </Flex>
           </Box>
         </Box>
       </Box>
@@ -118,6 +151,9 @@ export const query = graphql`
       content
       createdAt
       updatedAt
+      category {
+        slug
+      }
     }
   }
 `;

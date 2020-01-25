@@ -171,7 +171,7 @@ export const query = graphql`
         }
       }
     }    
-    allStrapiPost(filter: {category: {slug: {eq: $slug}}}) {
+    allStrapiPost(filter: {category: {slug: {eq: $slug}}}, sort: {fields: createdAt, order: DESC}) {
       edges {
         node {
           id

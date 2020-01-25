@@ -156,7 +156,7 @@ export const query = graphql`
         }
       }
     }    
-    allStrapiPost {
+    allStrapiPost(sort: {fields: createdAt, order: DESC}) {
       edges {
         node {
           id

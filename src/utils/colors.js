@@ -4,7 +4,9 @@ const colors = {
     secondary: '#fff',
     accent: '#333',
     highlight: '#393b41',
-    shadow: '#192550'
+    shadow: '#192550',
+    quote: '#808080',
+    link: '#deb887'
   },
   auxTheme: {
     primary: '#fff',

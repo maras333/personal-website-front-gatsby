@@ -23,9 +23,28 @@ const contentContainerStyle = css`
   flex-flow: column nowrap;
   justify-content: flex-start;
   items-align: flex-start;
-  & img {
-    max-width: 50%;
-    margin: 1rem auto;
+  blockquote {
+    font-style: italic;
+    p {
+      color: ${colors.quote};
+    }
+  }
+  p {
+    & :has(+ img) {
+      text-align: center;
+    }
+    & img {
+      max-width: 66%;
+      ${media.small`
+      max-width: 100%;
+    `};
+    }
+    & a {
+      text-decoration: underline;
+      :hover {
+        color: ${colors.link};
+      }
+    }
   }
 `;
 

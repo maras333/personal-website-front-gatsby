@@ -115,7 +115,7 @@ const CategoryPostsTemplate = ({ data }) => {
           </Heading1>
           <Container className={classes.subtitleContainer} maxWidth="lg">
             <Typography variant="h5" align="center" paragraph>
-              {categoryData.name} category. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel massa nec lorem consectetur varius. Suspendisse potenti. Donec vitae dui scelerisque, pellentesque leo vel
+              {categoryData.description} 
             </Typography>
           </Container>
           <Container className={classes.cardGrid}>
@@ -191,6 +191,7 @@ export const query = graphql`
     }
     strapiCategory(slug: {eq: $slug}) {
       name 
+      description
     }
     allStrapiCategory {
       edges {

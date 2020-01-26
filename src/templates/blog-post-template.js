@@ -12,7 +12,7 @@ import { ButtonSecondary } from '../components/Buttons';
 import feather from '../utils/feather';
 import media from '../utils/media';
 
-const converter = new showdown.Converter();
+const converter = new showdown.Converter({ tables: true });
 
 const svgStyles = css`
   vertical-align: middle;

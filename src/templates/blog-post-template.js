@@ -45,6 +45,12 @@ const contentContainerStyle = css`
       }
     }
   }
+  table {
+    border: 1px solid ${colors.secondary};
+    th {
+      border-bottom: 1px solid ${colors.secondary};
+    }
+  }
 `;
 
 const articleStyle = css`

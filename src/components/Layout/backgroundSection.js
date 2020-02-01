@@ -15,7 +15,6 @@ const BackgroundSection = ({ className, children }) => (
               duotone: { highlight: "#393b41", shadow: "#474a51", opacity: 80 }
               grayscale: false
               quality: 90
-              maxWidth: 1920
             ) {
               ...GatsbyImageSharpFluid_withWebp
             }

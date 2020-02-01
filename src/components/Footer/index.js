@@ -105,7 +105,7 @@ const Li = styled.li`
 `;
 
 // eslint-disable-next-line prettier/prettier
-const Footer = ({ name, linkedin, github, facebook, instagram, email }) => (
+const Footer = ({ name, linkedin, github, facebook, instagram, rss }) => (
   <div className={footerStyle}>
     <Box
       maxWidth="1280px"
@@ -183,8 +183,8 @@ const Footer = ({ name, linkedin, github, facebook, instagram, email }) => (
                 </a>
               </Li>
               <Li>
-                <a title="My E-Mail address" href={`mailto:${email}`}>
-                  {feather('mail', ['30', '30'], svgStyles)}
+                <a title="Rss feed" href={`${rss}`}>
+                  {feather('rss', ['30', '30'], svgStyles)}
                 </a>
               </Li>
             </ul>
@@ -204,7 +204,7 @@ Footer.propTypes = {
   github: PropTypes.string,
   facebook: PropTypes.string,
   instagram: PropTypes.string,
-  email: PropTypes.string
+  rss: PropTypes.string
 };
 
 Footer.defaultProps = {
@@ -213,7 +213,7 @@ Footer.defaultProps = {
   github: 'https://github.com/maras333',
   facebook: 'https://www.facebook.com/marek.czyz.16',
   instagram: 'https://www.instagram.com/em51_maras/',
-  email: 'maras.czyz[at]gmail.com'
+  rss: 'https://marekczyz.xyz/blog/rss.xml'
 };
 
 export default Footer;

@@ -117,7 +117,7 @@ module.exports = {
               }
             `,
             output: '/blog/rss.xml',
-            title: 'Site RSS Feed'
+            title: 'One Revolution More Feed'
           }
         ]
       }

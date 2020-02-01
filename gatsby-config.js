@@ -91,8 +91,7 @@ module.exports = {
                   {},
                   { title: edge.node.title },
                   {
-                    lead: edge.node.lead,
-                    category: edge.node.category.name,
+                    description: edge.node.lead,
                     date: edge.node.updatedAt,
                     url: `${site.siteMetadata.siteUrl}/blog/${edge.node.slug}`,
                     guid: edge.node.id
@@ -111,10 +110,7 @@ module.exports = {
                       lead
                       slug
                       createdAt
-                      updatedAt
-                      category {
-                        name
-                      }                      
+                      updatedAt                     
                     }
                   }
                 }

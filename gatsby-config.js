@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: 'My Blog',
-    description: 'Gatsby blog with Strapi as headless CMS',
-    author: `Marek Czyż`
+    title: `One revolution more!`,
+    description: 'Blog about sports and programming simultaneously.',
+    author: `Marek Czyż`,
+    siteUrl: `https://www.marekczyz.xyz`
   },
   mapping: {
     'MarkdownRemark.frontmatter.author': 'AuthorsYaml'
@@ -66,6 +67,64 @@ module.exports = {
         }
       }
     },
-    'gatsby-plugin-emotion'
+    'gatsby-plugin-emotion',
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allStrapiPost } }) =>
+              allStrapiPost.edges.map(edge =>
+                Object.assign(
+                  {},
+                  { title: edge.node.title },
+                  {
+                    lead: edge.node.lead,
+                    category: edge.node.category.name,
+                    date: edge.node.updatedAt,
+                    url: `${site.siteMetadata.siteUrl}/blog/${edge.node.slug}`,
+                    guid: edge.node.id
+                  }
+                )
+              ),
+            query: `
+              {
+                allStrapiPost(
+                  sort: { order: DESC, fields: [updatedAt] },
+                ) {
+                  edges {
+                    node {
+                      id
+                      title
+                      lead
+                      slug
+                      createdAt
+                      updatedAt
+                      category {
+                        name
+                      }                      
+                    }
+                  }
+                }
+              }
+            `,
+            output: '/blog/rss.xml',
+            title: 'Site RSS Feed'
+          }
+        ]
+      }
+    }
   ]
 };

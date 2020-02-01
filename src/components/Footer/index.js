@@ -213,7 +213,7 @@ Footer.defaultProps = {
   github: 'https://github.com/maras333',
   facebook: 'https://www.facebook.com/marek.czyz.16',
   instagram: 'https://www.instagram.com/em51_maras/',
-  rss: 'https://marekczyz.xyz/blog/rss.xml'
+  rss: 'https://www.marekczyz.xyz/blog/rss.xml'
 };
 
 export default Footer;

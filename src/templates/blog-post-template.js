@@ -90,8 +90,7 @@ const Article = styled.article`
 
 const Template = ({ data }) => {
   const { strapiPost: post } = data;
-  const renderedText =
-    post.updatedAt > post.createdAt ? 'updated at:' : 'created at:';
+  const renderedText = 'created at:';
   const formattedDate = formatPostDate(post);
 
   return (

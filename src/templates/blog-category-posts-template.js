@@ -48,10 +48,13 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   typography: {
+    color: colors.primary
+  },
+  date: {
     color: colors.primary,
     lineHeight: 2.5,
     textAlign: 'right',
-    fontWeight: 700 
+    fontWeight: 700    
   }
 }));
 

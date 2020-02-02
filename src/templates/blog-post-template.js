@@ -3,7 +3,6 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import styled, { css } from 'react-emotion';
 import { space } from 'styled-system';
-import moment from 'moment';
 import showdown from 'showdown';
 import { formatPostDate } from '../utils/helpers';
 import { Box, Flex } from '../components/Layout';

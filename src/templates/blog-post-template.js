@@ -5,6 +5,7 @@ import styled, { css } from 'react-emotion';
 import { space } from 'styled-system';
 import moment from 'moment';
 import showdown from 'showdown';
+import { formatPostDate } from '../utils/helpers';
 import { Box, Flex } from '../components/Layout';
 import colors from '../utils/colors';
 import PageWrapper from '../components/PageWrapper';
@@ -91,9 +92,7 @@ const Template = ({ data }) => {
   const { strapiPost: post } = data;
   const renderedText =
     post.updatedAt > post.createdAt ? 'updated at:' : 'created at:';
-  const formattedDate = moment(
-    post.updatedAt > post.createdAt ? post.updatedAt : post.createdAt
-  ).format('MMMM Do YYYY');
+  const formattedDate = formatPostDate(post);
 
   return (
     <PageWrapper>

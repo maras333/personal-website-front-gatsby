@@ -7,6 +7,7 @@ import styled, { css } from 'react-emotion';
 import { width, textAlign, space, zIndex } from 'styled-system';
 import { Container, Grid, Card, CardMedia, CardContent, Typography, CardActions, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { formatPostDate } from '../../utils/helpers';
 import { Box, Flex } from '../../components/Layout';
 import colors from '../../utils/colors';
 import PageWrapper from '../../components/PageWrapper';
@@ -48,6 +49,12 @@ const useStyles = makeStyles(theme => ({
   },
   typography: {
     color: colors.primary
+  },
+  date: {
+    color: colors.primary,
+    lineHeight: 2.5,
+    textAlign: 'right',
+    fontWeight: 700    
   }
 }));
 
@@ -124,6 +131,9 @@ const BlogIndex = ({ data }) => {
                         }
                       </CardMedia>
                       <CardContent className={classes.cardContent}>
+                        <Typography className={classes.date}> 
+                          { formatPostDate(post) } 
+                        </Typography>
                         <Typography className={classes.typography} gutterBottom variant="h5" component="h2">
                           {post.title}
                         </Typography>

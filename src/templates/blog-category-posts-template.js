@@ -7,6 +7,7 @@ import styled, { css } from 'react-emotion';
 import { width, textAlign, space, zIndex } from 'styled-system';
 import { Container, Grid, Card, CardMedia, CardContent, Typography, CardActions, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { formatPostDate } from '../utils/helpers';
 import { Box, Flex } from '../components/Layout';
 import colors from '../utils/colors';
 import PageWrapper from '../components/PageWrapper';
@@ -47,7 +48,10 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   typography: {
-    color: colors.primary
+    color: colors.primary,
+    lineHeight: 2.5,
+    textAlign: 'right',
+    fontWeight: 700 
   }
 }));
 
@@ -133,7 +137,10 @@ const CategoryPostsTemplate = ({ data }) => {
                           )}
                         </CardMedia>
                       <CardContent className={classes.cardContent}>
-                          <Typography
+                        <Typography className={classes.date}>
+                          { formatPostDate(post) }
+                        </Typography>
+                        <Typography
                           className={classes.typography}
                           gutterBottom
                           variant="h5"

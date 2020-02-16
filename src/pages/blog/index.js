@@ -174,6 +174,7 @@ export const query = graphql`
           slug
           title
           lead
+          createdAt
           image {
             id
             childImageSharp {

@@ -94,7 +94,6 @@ const CategoryPostsTemplate = ({ data }) => {
     setElHeight(flexEl.current.clientHeight);
     setElWidth(flexEl.current.clientWidth);
   }, []);
-
   return (
     <PageWrapper>
       <Box
@@ -188,6 +187,7 @@ export const query = graphql`
           slug
           title
           lead
+          createdAt
           image {
             id
             childImageSharp {

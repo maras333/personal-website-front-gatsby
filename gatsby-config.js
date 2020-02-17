@@ -148,6 +148,14 @@ module.exports = {
           }
         ]
       }
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://www.marekczyz.xyz',
+        sitemap: 'https://www.marekczyz.xyz/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
     }
   ]
 };

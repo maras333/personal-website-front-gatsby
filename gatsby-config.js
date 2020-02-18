@@ -25,11 +25,11 @@ module.exports = {
         // Delays sending pageview hits on route update (in milliseconds)
         pageTransitionDelay: 0,
         // Enables Google Optimize using your container Id
-        optimizeId: process.env.GOOGLE_OPTIMIZE_TRACKING_ID || 'none',
+        // optimizeId: process.env.GOOGLE_OPTIMIZE_TRACKING_ID || 'none',
         // Enables Google Optimize Experiment ID
-        experimentId: process.env.GOOGLE_EXPERIMENT_ID || 'none',
+        // experimentId: process.env.GOOGLE_EXPERIMENT_ID || 'none',
         // Set Variation ID. 0 for original 1,2,3....
-        variationId: process.env.GOOGLE_OPTIMIZE_VARIATION_ID || 'none',
+        // variationId: process.env.GOOGLE_OPTIMIZE_VARIATION_ID || 'none',
         // Any additional optional fields
         sampleRate: 100,
         siteSpeedSampleRate: 10,

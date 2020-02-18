@@ -13,7 +13,7 @@ module.exports = {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         // The property ID; the tracking code won't be generated without it
-        trackingId: 'UA-114127986-2',
+        trackingId: process.env.GA_TRACKING_ID,
         // Defines where to place the tracking script - `true` in the head and `false` in the body
         head: true,
         // Setting this parameter is optional
@@ -33,7 +33,7 @@ module.exports = {
         // Any additional optional fields
         sampleRate: 5,
         siteSpeedSampleRate: 10,
-        cookieDomain: 'auto'
+        cookieDomain: 'marekczyz.xyz'
       }
     },
     // Adding various source folders to the GraphQL layer.

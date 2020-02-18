@@ -23,7 +23,7 @@ module.exports = {
         // Avoids sending pageview hits from custom paths
         exclude: [],
         // Delays sending pageview hits on route update (in milliseconds)
-        pageTransitionDelay: 0,
+        pageTransitionDelay: 100,
         // Enables Google Optimize using your container Id
         // optimizeId: process.env.GOOGLE_OPTIMIZE_TRACKING_ID || 'none',
         // Enables Google Optimize Experiment ID

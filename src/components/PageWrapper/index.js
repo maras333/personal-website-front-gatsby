@@ -53,7 +53,7 @@ injectGlobal`
      height: 100%;
  }  
 
- div[role="group"][tabindex] {
+ div[id="gatsby-focus-wrapper"] {
   height: 100%;
  }
 `;

@@ -17,6 +17,7 @@ import PageWrapper from '../components/PageWrapper';
 import ConstellationCanvas from '../components/Canvas';
 import colors from '../utils/colors';
 import media from '../utils/media';
+import SEO from '../components/SEO';
 
 const imgStyle = css`
   border-radius: 33%;
@@ -74,79 +75,87 @@ const About = ({ data }) => {
   }, []);
 
   return (
-    <PageWrapper>
-      <Box
-        className={aboutWrapper}
-        bg={colors.primary}
-        width={['100vw', '100vw', '100vw']}
-        maxWidth={['100%', '100%', '100%']}
-        m="0 auto"
-        px={[2, 3, 6]}
-        py={[2, 3, 5]}
-        align="left"
-        color="white"
-      >
-        <Flex
-          className={flexContainer}
-          width="100vw"
-          wrap={['wrap', 'wrap', 'wrap']}
-          innerRef={flexEl}
+    <>
+      <SEO
+        title="About"
+        description={description}
+        pathname="/about"
+        article={false}
+      />
+      <PageWrapper>
+        <Box
+          className={aboutWrapper}
+          bg={colors.primary}
+          width={['100vw', '100vw', '100vw']}
+          maxWidth={['100%', '100%', '100%']}
+          m="0 auto"
+          px={[2, 3, 6]}
+          py={[2, 3, 5]}
+          align="left"
+          color="white"
         >
-          <ConstellationCanvas width={elWidth} height={elHeight} />
-          <Heading1 width={[1, 1, 1]} textAlign="center" zIndex={1}>
-            About Me
+          <Flex
+            className={flexContainer}
+            width="100vw"
+            wrap={['wrap', 'wrap', 'wrap']}
+            innerRef={flexEl}
+          >
+            <ConstellationCanvas width={elWidth} height={elHeight} />
+            <Heading1 width={[1, 1, 1]} textAlign="center" zIndex={1}>
+              About Me
           </Heading1>
-          <Box
-            width={[1, 1, 1 / 4]}
-            m={[0, '2rem 0 0 0', '2rem 0 0 0']}
-            px={[5, 5, 5]}
-            py={[3, 5, 5]}
-            color={colors.secondary}
-            zIndex={1}
-          >
-            <Img
-              className={imgStyle}
-              alt="Picture of me"
-              fluid={imageData.fluid}
-            />
-          </Box>
-          <Box
-            width={[1, 1, 3 / 8]}
-            m={['2rem 0 0 0', '2rem 0 0 0', '2rem 0 0 0']}
-            px={[3, 3, 4]}
-            color={colors.secondary}
-            zIndex={1}
-          >
-            <Heading2 my={[0, 0, 0]}>{description.intro}</Heading2>
-            <div dangerouslySetInnerHTML={{ __html: description.full }} />
-          </Box>
-          <Box
-            width={[1, 1, 3 / 8]}
-            m={['2rem 0 0 0', '2rem 0 0 0', '2rem 0 0 0']}
-            px={[3, 3, 4]}
-            color={colors.secondary}
-            zIndex={1}
-          >
-            <Heading2 my={[0, 0, 0]}>{description.whatIDo}</Heading2>
-            <DL lineHeight="1.4">
-              {skills.map(({ type, tools }, index) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <div key={index}>
-                  <DT
-                    m={['1rem 0 0 0', '1rem 0 0 0', '1rem 0 0 0']}
-                    fontSize={['20px', '20px', '20px']}
-                    fontWeight={700}
-                  >
-                    {type}
-                  </DT>
-                  <DD fontSize={['18px', '18px', '18px']}>{tools}</DD>
-                </div>
-              ))}
-            </DL>
-          </Box>
-        </Flex>
-      </Box>
-    </PageWrapper>
+            <Box
+              width={[1, 1, 1 / 4]}
+              m={[0, '2rem 0 0 0', '2rem 0 0 0']}
+              px={[5, 5, 5]}
+              py={[3, 5, 5]}
+              color={colors.secondary}
+              zIndex={1}
+            >
+              <Img
+                className={imgStyle}
+                alt="Picture of me"
+                fluid={imageData.fluid}
+              />
+            </Box>
+            <Box
+              width={[1, 1, 3 / 8]}
+              m={['2rem 0 0 0', '2rem 0 0 0', '2rem 0 0 0']}
+              px={[3, 3, 4]}
+              color={colors.secondary}
+              zIndex={1}
+            >
+              <Heading2 my={[0, 0, 0]}>{description.intro}</Heading2>
+              <div dangerouslySetInnerHTML={{ __html: description.full }} />
+            </Box>
+            <Box
+              width={[1, 1, 3 / 8]}
+              m={['2rem 0 0 0', '2rem 0 0 0', '2rem 0 0 0']}
+              px={[3, 3, 4]}
+              color={colors.secondary}
+              zIndex={1}
+            >
+              <Heading2 my={[0, 0, 0]}>{description.whatIDo}</Heading2>
+              <DL lineHeight="1.4">
+                {skills.map(({ type, tools }, index) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <div key={index}>
+                    <DT
+                      m={['1rem 0 0 0', '1rem 0 0 0', '1rem 0 0 0']}
+                      fontSize={['20px', '20px', '20px']}
+                      fontWeight={700}
+                    >
+                      {type}
+                    </DT>
+                    <DD fontSize={['18px', '18px', '18px']}>{tools}</DD>
+                  </div>
+                ))}
+              </DL>
+            </Box>
+          </Flex>
+        </Box>
+      </PageWrapper>
+    </>
   );
 };
 

@@ -5,6 +5,7 @@ import { width, textAlign, space } from 'styled-system';
 import { Box } from '../components/Layout';
 import PageWrapper from '../components/PageWrapper';
 import colors from '../utils/colors';
+import SEO from '../components/SEO';
 
 const termsWrapper = css`
   display: flex;
@@ -19,30 +20,33 @@ const Heading1 = styled.h1`
 `;
 
 const Terms = () => (
-  <PageWrapper>
-    <Box className={termsWrapper} bg={colors.primary}>
-      <Box
-        width={[1, 1, 3 / 5]}
-        m="0 auto"
-        px={[2, 3, 6]}
-        py={[2, 3, 4]}
-        color={colors.secondary}
-      >
-        <Heading1 textAlign="center">Terms of Service</Heading1>
-        <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-          ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-          sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-          et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-          takimata sanctus est Lorem ipsum dolor sit amet.
+  <>
+    <SEO title="Terms" pathname="/terms" article={false} />
+    <PageWrapper>
+      <Box className={termsWrapper} bg={colors.primary}>
+        <Box
+          width={[1, 1, 3 / 5]}
+          m="0 auto"
+          px={[2, 3, 6]}
+          py={[2, 3, 4]}
+          color={colors.secondary}
+        >
+          <Heading1 textAlign="center">Terms of Service</Heading1>
+          <p>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+            sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+            rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+            ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+            dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+            et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+            takimata sanctus est Lorem ipsum dolor sit amet.
         </p>
+        </Box>
       </Box>
-    </Box>
-  </PageWrapper>
+    </PageWrapper>
+  </>
 );
 
 export default Terms;

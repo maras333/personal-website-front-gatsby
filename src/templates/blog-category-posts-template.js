@@ -14,6 +14,7 @@ import PageWrapper from '../components/PageWrapper';
 import ConstellationCanvas from '../components/Canvas';
 import SubNavigation from '../components/SubNavigation';
 import media from '../utils/media';
+import SEO from '../components/SEO';
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -54,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     color: colors.primary,
     lineHeight: 2.5,
     textAlign: 'right',
-    fontWeight: 700    
+    fontWeight: 700
   }
 }));
 
@@ -95,79 +96,87 @@ const CategoryPostsTemplate = ({ data }) => {
     setElWidth(flexEl.current.clientWidth);
   }, []);
   return (
-    <PageWrapper>
-      <Box
-        className={blogWrapper}
-        bg={colors.primary}
-        width={['100vw', '100vw', '100vw']}
-        maxWidth={['100%', '100%', '100%']}
-        m="0 auto"
-        pt={[2, 3, 0]}
-        pb={[2, 3, 4]}
-        px={[2, 3, 4]}
-      >
-        <SubNavigation categories={categories} width={[1, 1, 2 / 3]}></SubNavigation>
-        <Flex
-          className={flexContainer}
-          innerRef={flexEl}
-          width={[1, 1, 2 / 3]}
-          alignItems="center"
-          flexDirection="column"
-          wrap={['wrap', 'wrap', 'wrap']}
+    <>
+      <SEO
+        title={`${categoryData.name}`}
+        description={`${categoryData.description}`}
+        pathname={`/blog/category/${categoryData.slug}`}
+        article={false}
+      />    
+      <PageWrapper>
+        <Box
+          className={blogWrapper}
+          bg={colors.primary}
+          width={['100vw', '100vw', '100vw']}
+          maxWidth={['100%', '100%', '100%']}
+          m="0 auto"
+          pt={[2, 3, 0]}
+          pb={[2, 3, 4]}
+          px={[2, 3, 4]}
         >
-          <ConstellationCanvas width={elWidth} height={elHeight} />
-          <Heading1 zIndex={1} textAlign="center">
-            {`${categoryData.name.charAt(0).toUpperCase()}${categoryData.name.slice(1)}`}
-          </Heading1>
-          <Container className={classes.subtitleContainer} maxWidth="lg">
-            <Typography variant="h5" align="center" paragraph>
-              {categoryData.description} 
-            </Typography>
-          </Container>
-          <Container className={classes.cardGrid}>
-            {/* End hero unit */}
-            <Grid container spacing={10}>
-              {posts.length
-                ? posts.map(({ node: post }, index) => (
-                  <Grid item key={post.id} xs={12} sm={6} md={4}>
+          <SubNavigation categories={categories} width={[1, 1, 2 / 3]}></SubNavigation>
+          <Flex
+            className={flexContainer}
+            innerRef={flexEl}
+            width={[1, 1, 2 / 3]}
+            alignItems="center"
+            flexDirection="column"
+            wrap={['wrap', 'wrap', 'wrap']}
+          >
+            <ConstellationCanvas width={elWidth} height={elHeight} />
+            <Heading1 zIndex={1} textAlign="center">
+              {`${categoryData.name.charAt(0).toUpperCase()}${categoryData.name.slice(1)}`}
+            </Heading1>
+            <Container className={classes.subtitleContainer} maxWidth="lg">
+              <Typography variant="h5" align="center" paragraph>
+                {categoryData.description}
+              </Typography>
+            </Container>
+            <Container className={classes.cardGrid}>
+              {/* End hero unit */}
+              <Grid container spacing={10}>
+                {posts.length
+                  ? posts.map(({ node: post }, index) => (
+                    <Grid item key={post.id} xs={12} sm={6} md={4}>
                       <Card className={classes.card}>
-                      <CardMedia>
+                        <CardMedia>
                           {post.image ? (
-                          <Img fluid={post.image.childImageSharp.fluid} />
+                            <Img fluid={post.image.childImageSharp.fluid} />
                           ) : (
-                            <Img fluid={imageData.fluid} />
-                          )}
+                              <Img fluid={imageData.fluid} />
+                            )}
                         </CardMedia>
-                      <CardContent className={classes.cardContent}>
-                        <Typography className={classes.date}>
-                          { formatPostDate(post) }
-                        </Typography>
-                        <Typography
-                          className={classes.typography}
-                          gutterBottom
-                          variant="h5"
-                          component="h2"
-                        >
-                          {post.title}
-                        </Typography>
+                        <CardContent className={classes.cardContent}>
+                          <Typography className={classes.date}>
+                            {formatPostDate(post)}
+                          </Typography>
+                          <Typography
+                            className={classes.typography}
+                            gutterBottom
+                            variant="h5"
+                            component="h2"
+                          >
+                            {post.title}
+                          </Typography>
                           <Typography className={classes.typography}>
-                          {post.lead}
-                        </Typography>
+                            {post.lead}
+                          </Typography>
                         </CardContent>
-                      <CardActions>
+                        <CardActions>
                           <Button className={classes.typography} size="large">
-                          <Link to={`/blog/${post.slug}`}>READ</Link>
-                        </Button>
+                            <Link to={`/blog/${post.slug}`}>READ</Link>
+                          </Button>
                         </CardActions>
-                    </Card>
+                      </Card>
                     </Grid>
                   ))
-                : ''}
-            </Grid>
-          </Container>
-        </Flex>
-      </Box>
-    </PageWrapper>
+                  : ''}
+              </Grid>
+            </Container>
+          </Flex>
+        </Box>
+      </PageWrapper>
+    </>
   );
 };
 
@@ -202,6 +211,7 @@ export const query = graphql`
     strapiCategory(slug: {eq: $slug}) {
       name 
       description
+      slug
     }
     allStrapiCategory {
       edges {

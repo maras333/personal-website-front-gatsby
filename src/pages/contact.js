@@ -9,6 +9,7 @@ import ConstellationCanvas from '../components/Canvas';
 import colors from '../utils/colors';
 import feather from '../utils/feather';
 import media from '../utils/media';
+import SEO from '../components/SEO';
 
 const svgStyles = css`
   opacity: 0.5;
@@ -107,52 +108,55 @@ const Contact = ({ data }) => {
   }, []);
 
   return (
-    <PageWrapper>
-      <Box
-        className={contactWrapper}
-        bg={colors.primary}
-        width={['100vw', '100vw', '100vw']}
-        maxWidth={['100%', '100%', '100%']}
-        m="0 auto"
-        px={[1, 3, 6]}
-        py={[3, 3, 5]}
-        align="left"
-        color="white"
-      >
-        <Flex
-          className={flexContainer}
-          width="100vw"
-          wrap={['wrap', 'wrap', 'wrap']}
-          innerRef={flexEl}
+    <>
+      <SEO title="Contact" pathname="/contact" article={false} />
+      <PageWrapper>
+        <Box
+          className={contactWrapper}
+          bg={colors.primary}
+          width={['100vw', '100vw', '100vw']}
+          maxWidth={['100%', '100%', '100%']}
+          m="0 auto"
+          px={[1, 3, 6]}
+          py={[3, 3, 5]}
+          align="left"
+          color="white"
         >
-          <ConstellationCanvas width={elWidth} height={elHeight} />
-          <Heading1 width={[1, 1, 1]} textAlign="center" zIndex={1}>
-            Contact
-          </Heading1>
-          <Box
-            width={[1, 1, 1]}
-            textAlign="center"
-            zIndex={1}
-            m={['0', '0', '0']}
-            px={['5%', '20%', '30%']}
-            color={colors.secondary}
+          <Flex
+            className={flexContainer}
+            width="100vw"
+            wrap={['wrap', 'wrap', 'wrap']}
+            innerRef={flexEl}
           >
-            <Heading2>{sentence}</Heading2>
-            <ul className={ulStyle}>
-              <Li>
-                {feather('map-pin', ['25', '25'], svgStyles)} {city}
-              </Li>
-              <Li>
-                {feather('mail', ['25', '25'], svgStyles)} {email}
-              </Li>
-              <Li>
-                {feather('phone', ['25', '25'], svgStyles)} {phone}
-              </Li>
-            </ul>
-          </Box>
-        </Flex>
-      </Box>
-    </PageWrapper>
+            <ConstellationCanvas width={elWidth} height={elHeight} />
+            <Heading1 width={[1, 1, 1]} textAlign="center" zIndex={1}>
+              Contact
+            </Heading1>
+            <Box
+              width={[1, 1, 1]}
+              textAlign="center"
+              zIndex={1}
+              m={['0', '0', '0']}
+              px={['5%', '20%', '30%']}
+              color={colors.secondary}
+            >
+              <Heading2>{sentence}</Heading2>
+              <ul className={ulStyle}>
+                <Li>
+                  {feather('map-pin', ['25', '25'], svgStyles)} {city}
+                </Li>
+                <Li>
+                  {feather('mail', ['25', '25'], svgStyles)} {email}
+                </Li>
+                <Li>
+                  {feather('phone', ['25', '25'], svgStyles)} {phone}
+                </Li>
+              </ul>
+            </Box>
+          </Flex>
+        </Box>
+      </PageWrapper>
+    </>
   );
 };
 

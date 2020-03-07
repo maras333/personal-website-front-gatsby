@@ -3,7 +3,8 @@ module.exports = {
     title: `One revolution more!`,
     description: 'Blog about sports and programming simultaneously.',
     author: `Marek Czyż`,
-    siteUrl: `https://www.marekczyz.xyz`
+    siteUrl: `https://www.marekczyz.xyz`,
+    image: `/id.jpg`
   },
   mapping: {
     'MarkdownRemark.frontmatter.author': 'AuthorsYaml'
@@ -156,6 +157,7 @@ module.exports = {
         sitemap: 'https://www.marekczyz.xyz/sitemap.xml',
         policy: [{ userAgent: '*', allow: '/' }]
       }
-    }
+    },
+    'gatsby-plugin-react-helmet'
   ]
 };

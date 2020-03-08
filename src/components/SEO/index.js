@@ -40,6 +40,7 @@ const SEO = ({ title, description, image, pathname, article }) => (
               <meta property="og:description" content={seo.description} />
             )}
             {seo.image && <meta property="og:image" content={seo.image} />}
+            <html lang="en" />
           </Helmet>
         </>
       );

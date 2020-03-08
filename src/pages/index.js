@@ -25,12 +25,7 @@ export default ({ data }) => {
   const myData = data.allContentJson.edges[0].node.index;
   return (
     <>
-      <SEO
-        title={myData.title}
-        description={myData.subtitle}
-        pathname="/blog"
-        article={false}
-      />
+      <SEO title={myData.title} description={myData.subtitle} article={false} />
       <PageWrapper>
         <StyledBackgroundSection>
           <div>

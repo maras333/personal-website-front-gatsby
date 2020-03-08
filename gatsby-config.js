@@ -96,6 +96,7 @@ module.exports = {
       }
     },
     'gatsby-plugin-emotion',
+    'gatsby-plugin-sitemap',
     {
       resolve: `gatsby-plugin-feed`,
       options: {

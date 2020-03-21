@@ -132,29 +132,29 @@ const BlogIndex = ({ data }) => {
                   ? posts.map(({ node: post }, index) => (
                     <Grid item key={post.id} xs={12} sm={6} md={4}>
                       <Card className={classes.card}>
-                        <CardMedia>
-                          {
-                            post.image
-                              ? <Img fluid={post.image.childImageSharp.fluid} />
-                              : <Img fluid={imageData.fluid} />
-                          }
-                        </CardMedia>
-                        <CardContent className={classes.cardContent}>
-                          <Typography className={classes.date}>
-                            {formatPostDate(post)}
-                          </Typography>
-                          <Typography className={classes.typography} gutterBottom variant="h5" component="h2">
-                            {post.title}
-                          </Typography>
-                          <Typography className={classes.typography}>
-                            {post.lead}
-                          </Typography>
-                        </CardContent>
-                        <CardActions>
-                          <Button className={classes.typography} size="large">
-                            <Link to={`/blog/${post.slug}`}>READ</Link>
-                          </Button>
-                        </CardActions>
+                        <Link to={`/blog/${post.slug}`}>
+                          <CardMedia>
+                            {
+                              post.image
+                                ? <Img fluid={post.image.childImageSharp.fluid} />
+                                : <Img fluid={imageData.fluid} />
+                            }
+                          </CardMedia>
+                          <CardContent className={classes.cardContent}>
+                            <Typography className={classes.date}>
+                              {formatPostDate(post)}
+                            </Typography>
+                            <Typography className={classes.typography} gutterBottom variant="h5" component="h2">
+                              {post.title}
+                            </Typography>
+                            <Typography className={classes.typography}>
+                              {post.lead}
+                            </Typography>
+                          </CardContent>
+                          <CardActions>
+                            <Button className={classes.typography} size="large">READ</Button>
+                          </CardActions>
+                        </Link>
                       </Card>
                     </Grid>
                   ))

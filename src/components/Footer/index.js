@@ -134,7 +134,7 @@ const Footer = ({ name, linkedin, github, facebook, instagram, rss }) => (
                 <Link to="/privacy">Privacy Policy</Link>
               </Li>
               <Li px={[0, 0, 1]}>
-                <Link to="#">Terms of Service</Link>
+                <Link to="/terms">Terms of Service</Link>
               </Li>
             </ul>
           </Wrapper>

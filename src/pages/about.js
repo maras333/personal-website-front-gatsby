@@ -103,7 +103,7 @@ const About = ({ data }) => {
             <ConstellationCanvas width={elWidth} height={elHeight} />
             <Heading1 width={[1, 1, 1]} textAlign="center" zIndex={1}>
               About Me
-          </Heading1>
+            </Heading1>
             <Box
               width={[1, 1, 1 / 4]}
               m={[0, '2rem 0 0 0', '2rem 0 0 0']}

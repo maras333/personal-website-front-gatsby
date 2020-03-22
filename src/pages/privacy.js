@@ -68,7 +68,7 @@ const Privacy = () => {
             <Box
               width={[1, 1, 1]}
               m={[0, '2rem 0 0 0', '2rem 0 0 0']}
-              px={[5, 5, 5]}
+              px={[3, 3, 4]}
               color={colors.secondary}
               zIndex={1}
             >

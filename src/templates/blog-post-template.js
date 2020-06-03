@@ -25,7 +25,9 @@ const contentContainerStyle = css`
   justify-content: flex-start;
   items-align: flex-start;
   pre {
-    overflow-x: scroll;
+    ${media.small`
+      overflow-x: scroll;
+    `}
   }
   blockquote {
     font-style: italic;

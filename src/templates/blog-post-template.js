@@ -24,6 +24,9 @@ const contentContainerStyle = css`
   flex-flow: column nowrap;
   justify-content: flex-start;
   items-align: flex-start;
+  pre {
+    overflow-x: scroll;
+  }
   blockquote {
     font-style: italic;
     p {

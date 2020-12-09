@@ -6,8 +6,8 @@
         },
         "about": {
             "description": {
-                "intro": "— I am Marek Czyż, a software engineer & amatour cyclist based in Warsaw:-)",
-                "full": "<p>I've always been drawn to the development. I started my career mainly as a frontend developer, but as time was passing by I started to be more focused on backend and it stayed like that till now. My skills are quite wide: from back-end to front-end development. I enjoy each aspect of it (but solving back-end challenges the most:-)) and building sites from start to finish. I'm available for remote work. </p><p>After hours I ride a bike a lot and fast as a road cyclist and it feels great!</p><p>If you would like to build something together, get in touch!</p>",
+                "intro": "— I am Marek Czyż, a software engineer & amatour cyclist based in Poznań:-)",
+                "full": "<p>I've always been drawn to the development. I started my career mainly as a frontend developer, but as time was passing by I started to be more focused on backend and it stayed like that till now. I possess a wide variety of skills from back-end to front-end development. I enjoy each aspect of it, especially solving back-end challenges :-) and building sites from start to finish. I'm available for remote work. </p><p>After hours I ride a bike a lot and fast as a road cyclist and it feels great!</p><p>If you would like to build something together, get in touch!</p>",
                 "whatIDo": "— What I do"
             },
             "skills": [

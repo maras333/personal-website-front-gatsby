@@ -42,12 +42,6 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: ``
-      }
-    },
-    {
       resolve: `gatsby-source-strapi`,
       options: {
         apiURL: process.env.API_URL

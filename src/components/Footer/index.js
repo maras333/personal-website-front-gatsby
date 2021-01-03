@@ -193,7 +193,7 @@ const Footer = ({ name, linkedin, github, facebook, instagram, rss }) => (
       </Flex>
     </Box>
     <Box px={[3, 3, 1]} align="center">
-      <p>{`Copyright © 2020 ${name}. All rights reserved.`}</p>
+      <p>{`Copyright © 2021 ${name}. All rights reserved.`}</p>
     </Box>
   </div>
 );

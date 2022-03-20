@@ -193,7 +193,7 @@ const Footer = ({ name, linkedin, github, facebook, instagram, rss }) => (
       </Flex>
     </Box>
     <Box px={[3, 3, 1]} align="center">
-      <p>{`Copyright © 2021 ${name}. All rights reserved.`}</p>
+      <p>{`Copyright © 2022 ${name}. All rights reserved.`}</p>
     </Box>
   </div>
 );
@@ -208,7 +208,7 @@ Footer.propTypes = {
 };
 
 Footer.defaultProps = {
-  name: 'EM51 Maras Production',
+  name: 'Siskin Solutions',
   linkedin: 'https://www.linkedin.com/in/marek-czy%C5%BC-48bb4ab5/',
   github: 'https://github.com/maras333',
   facebook: 'https://www.facebook.com/marek.czyz.16',

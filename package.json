@@ -29,7 +29,7 @@
     "gatsby-transformer-remark": "^2.1.20",
     "gatsby-transformer-sharp": "^2.1.10",
     "gatsby-transformer-yaml": "^2.1.7",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "normalize.css": "^8.0.1",
     "parse-filepath": "^1.0.2",
     "prop-types": "^15.6.2",
